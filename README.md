@@ -139,7 +139,7 @@ v                                                                               
     The API will typically start on `https://localhost:7xxx` or `http://localhost:5xxx`.
 
 6.  **Test Event Ingestion:**
-    * Use the Swagger UI to send a `POST` request to the `/api/events` endpoint.
+    * Use the Swagger UI to send a `POST` request to the `/api/events/send` endpoint.
     * Sample JSON payload can be found in `appsettings.json` under `notificationEventDTO`
     * Check the console output for simulated email/SMS messages.
 
