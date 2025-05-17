@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36109.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VW.Notification.API", "src\VW.Notification.Platform\VW.Notification.API.csproj", "{E104184C-7443-4A80-8BE7-585809D1BC01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VW.Notification.API", "src\VW.Notification.API\VW.Notification.API.csproj", "{E104184C-7443-4A80-8BE7-585809D1BC01}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VW.Notification.Domain", "src\VW.Notification.Domain\VW.Notification.Domain.csproj", "{F8B54151-80C1-4776-B1B3-445EBC24A805}"
 EndProject
@@ -12,11 +12,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		.editorconfig = .editorconfig
 		Directory.Build.props = Directory.Build.props
 		Directory.Packages.props = Directory.Packages.props
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VW.Notification.Application", "src\VW.Notification.Application\VW.Notification.Application.csproj", "{3C57EF66-7244-467A-9600-C6D78BF9666F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VW.Notification.Infrastructure", "src\VW.Infrastructure\VW.Notification.Infrastructure.csproj", "{09E9EA9F-B5B0-4A24-96F4-90FB4CED07A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VW.Notification.Infrastructure", "src\VW.Notification.Infrastructure\VW.Notification.Infrastructure.csproj", "{09E9EA9F-B5B0-4A24-96F4-90FB4CED07A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Directory.Build.props = tests\Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VW.Notification.Application.Tests", "tests\VW.Notification.Application.Tests\VW.Notification.Application.Tests.csproj", "{9DECD3B5-ADB9-42AB-A3A2-22B667233937}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VW.Notification.Tests.Common", "tests\VW.Notifcation.Tests.Common\VW.Notification.Tests.Common.csproj", "{87B7935A-4A5F-4397-9B0A-EC95AD939A0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,9 +52,25 @@ Global
 		{09E9EA9F-B5B0-4A24-96F4-90FB4CED07A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09E9EA9F-B5B0-4A24-96F4-90FB4CED07A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09E9EA9F-B5B0-4A24-96F4-90FB4CED07A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DECD3B5-ADB9-42AB-A3A2-22B667233937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DECD3B5-ADB9-42AB-A3A2-22B667233937}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DECD3B5-ADB9-42AB-A3A2-22B667233937}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DECD3B5-ADB9-42AB-A3A2-22B667233937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B7935A-4A5F-4397-9B0A-EC95AD939A0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B7935A-4A5F-4397-9B0A-EC95AD939A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B7935A-4A5F-4397-9B0A-EC95AD939A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B7935A-4A5F-4397-9B0A-EC95AD939A0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E104184C-7443-4A80-8BE7-585809D1BC01} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{F8B54151-80C1-4776-B1B3-445EBC24A805} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{3C57EF66-7244-467A-9600-C6D78BF9666F} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{09E9EA9F-B5B0-4A24-96F4-90FB4CED07A1} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{9DECD3B5-ADB9-42AB-A3A2-22B667233937} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{87B7935A-4A5F-4397-9B0A-EC95AD939A0A} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8DBC32AC-4358-4C41-A615-6C554E9BDBC1}

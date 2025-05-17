@@ -1,0 +1,5 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\VW.Notification.Application\VW.Notification.Application.csproj" />
+  </ItemGroup>
+</Project>

@@ -18,7 +18,7 @@ public class NotificationRequest
 
     public DateTime? LastAttemptedTime { get; set; }
 
-    public int RetryCount { get; set; }
+    public int Attempts { get; set; }
 
     public NotificationStatus NotificationStatus { get; set; }
 
@@ -41,6 +41,6 @@ public class NotificationRequest
         Channel = channel;
         Recipient = recipient;
         Message = body;
-        RetryCount = 0;
+        Attempts = 0;
     }
 }

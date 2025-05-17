@@ -2,7 +2,7 @@
 
 namespace VW.Notification.Infrastructure.Notification;
 
-public class EmailService : INotificationService
+public class SmsService : INotificationService
 {
     private readonly ILogger _logger;
 
@@ -11,7 +11,7 @@ public class EmailService : INotificationService
     private readonly NotificationRetryPolicy _notificationRetryPolicy;
 
 
-    public EmailService(ILogger logger)
+    public SmsService(ILogger logger)
     {
         _logger = logger;
         _notificationRetryPolicy = new NotificationRetryPolicy(logger);
@@ -19,19 +19,20 @@ public class EmailService : INotificationService
 
     public async Task<bool> SendNotificationAsync(NotificationRequest notificationRequest)
     {
-        notificationRequest.NotificationStatus = Domain.Enums.NotificationStatus.Retrying;
-        notificationRequest.RetryCount++;
-        notificationRequest.LastAttemptedTime = DateTime.UtcNow;
-
         return await _notificationRetryPolicy.ExecuteAsync(notificationRequest, async () =>
         {
-            //use an email service provider to send the email
+            notificationRequest.LastAttemptedTime = DateTime.UtcNow;
+            notificationRequest.Attempts++;
 
-            _logger.LogInformation("--- START EMAIL SEND ---");
+            //use an sms service provider to send the sms
+
+            _logger.LogInformation("--- START SMS SEND ---");
             _logger.LogInformation("To: {Recipient}", notificationRequest.Recipient);
             _logger.LogInformation("Body: \n{Body}", notificationRequest.Message);
-            _logger.LogInformation("--- EMAIL SENT ---");
+            _logger.LogInformation("--- SMS SENT ---");
 
+            await Task.FromResult(0);
+            return true;
         });
     }
 }

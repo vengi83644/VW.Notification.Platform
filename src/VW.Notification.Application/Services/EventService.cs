@@ -7,9 +7,10 @@ public class EventService : IEventService
     private readonly ILogger<EventService> _logger;
 
     private readonly IRuleRepository<Rule> _ruleRepository;
-    private readonly ITemplateRepository<TemplateMessage> _templateRepository;
     private readonly ICustomerRepository<Customer> _customerRepository;
     private readonly ICustomerRuleRepository<CustomerRule> _customerRuleRepository;
+
+    private readonly ITemplateRepository _templateRepository;
 
     private INotificationService _notificationService;
     private readonly INotificationStrategyFactory _notificationStrategyFactory;
@@ -19,18 +20,19 @@ public class EventService : IEventService
     public EventService(
         ILogger<EventService> logger,
         IRuleRepository<Rule> ruleRepository,
-        ITemplateRepository<TemplateMessage> templateRepository,
         ICustomerRepository<Customer> customerRepository,
         ICustomerRuleRepository<CustomerRule> customerRuleRepository,
+        ITemplateRepository templateRepository,
         INotificationStrategyFactory notificationStrategyFactory,
         ITemplateService<NotificationTemplateData> templateService)
     {
         _logger = logger;
 
         _ruleRepository = ruleRepository;
-        _templateRepository = templateRepository;
         _customerRepository = customerRepository;
         _customerRuleRepository = customerRuleRepository;
+
+        _templateRepository = templateRepository;
 
         _notificationStrategyFactory = notificationStrategyFactory;
 
@@ -95,15 +97,21 @@ public class EventService : IEventService
             {
                 var templateId = rule.RuleTemplates.FirstOrDefault(w => w.NotificationChannel == channel)?.TemplateId;
 
-                if (templateId == null || Guid.Empty == templateId)
+                if (string.IsNullOrWhiteSpace(templateId))
                 {
                     _logger.LogWarning("No template found for notification channel: {NotificationChannel}", channel);
                     return;
                 }
 
-                var template = _templateRepository.GetById(templateId.Value);
+                var template = _templateRepository.GetById(templateId);
 
-                var notificationTemplateData = new NotificationTemplateData(notificationEvent.Id, notificationEvent.EventType, customer);
+                if (template == null)
+                {
+                    _logger.LogWarning("Template not found in the repository for ID: {TemplateId}", templateId);
+                    return;
+                }
+
+                var notificationTemplateData = new NotificationTemplateData(notificationEvent.Id, notificationEvent.EventType, customer, notificationEvent.Payload);
 
                 var notificationMessage = await _templateService.GetTemplateAsync(template?.TemplateId, notificationTemplateData);
 
@@ -115,13 +123,11 @@ public class EventService : IEventService
 
                 var notification = new NotificationRequest(notificationEvent.Id, notificationEvent.EventType, channel, customer, notificationMessage);
 
-                var notificationResult = await _notificationService.SendNotificationAsync(notification);
-
                 _notificationService = _notificationStrategyFactory.GetNotificationService(channel);
 
-                var result = await _notificationService.SendNotificationAsync(notification);
+                var notificationResult = await _notificationService.SendNotificationAsync(notification);
 
-                if (result)
+                if (notificationResult)
                 {
                     _logger.LogInformation("Notification sent successfully for event ID: {EventId}", notificationEvent.Id);
                 }

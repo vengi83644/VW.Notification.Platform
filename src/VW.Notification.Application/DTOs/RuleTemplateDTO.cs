@@ -2,7 +2,7 @@
 
 public class RuleTemplateDTO
 {
-    public Guid TemplateId { get; set; }
+    public string TemplateId { get; set; }
 
     public NotificationChannel NotificationChannel { get; set; }
 

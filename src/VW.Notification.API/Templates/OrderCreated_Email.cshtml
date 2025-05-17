@@ -1,0 +1,38 @@
+﻿@model VW.Notification.Application.DTOs.NotificationTemplateData
+
+@{
+    var orderId = "";
+    var orderAmount = "";
+
+    if (Model.Payload.ContainsKey(orderId))
+    {
+        orderId = Model.Payload[orderId].ToString();
+    }
+    if (Model.Payload.ContainsKey(orderAmount))
+    {
+        orderAmount = Model.Payload[orderAmount].ToString();
+    }
+}
+
+<html>
+<head>
+    Order Created
+</head>
+<body>
+    <p>
+        Hi @Model.Recipient.Name,
+    </p>
+    <p>
+        Your order has been created successfully.
+    </p>
+    <p>
+        Order ID: @orderId
+    </p>
+    <p>
+        Order Amount: @orderAmount
+    </p>
+    <p>
+        Thank you for your order!
+    </p>
+</body>
+</html>
