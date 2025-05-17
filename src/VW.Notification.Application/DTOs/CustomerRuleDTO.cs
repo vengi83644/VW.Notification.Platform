@@ -6,9 +6,6 @@ public class CustomerRuleDTO
 
     public Guid CustomerId { get; set; }
 
-    //OrderCreated,Email
-    //OrderShipped,SMS
-    //OrderDelivered,SMS
     public Dictionary<string, string> Conditions { get; set; }
 
     public CustomerRule ToCustomerRule()

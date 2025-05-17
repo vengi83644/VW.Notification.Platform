@@ -36,15 +36,15 @@ public class InMemoryTemplateRepository : ITemplateRepository
         }
     }
 
-    public void Add(TemplateMessage template)
+    public void Add(TemplateMessage templateMessage)
     {
-        if (_templates.ContainsKey(template.TemplateId))
+        if (_templates.ContainsKey(templateMessage.TemplateId))
         {
-            _logger.LogWarning("Template with ID '{Id}' already exists for TemplateId {TemplateId}", template.Id, template.TemplateId);
+            _logger.LogWarning("Template with ID '{Id}' already exists for TemplateId {TemplateId}", templateMessage.Id, templateMessage.TemplateId);
             return;
         }
 
-        _templates.Add(template.TemplateId, template);
+        _templates.Add(templateMessage.TemplateId, templateMessage);
     }
 
     public TemplateMessage? GetById(string templateId)

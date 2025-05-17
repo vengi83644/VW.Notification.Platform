@@ -2,7 +2,7 @@
 
 public interface ITemplateRepository
 {
-    void Add(TemplateMessage template);
+    void Add(TemplateMessage templateMessage);
 
     TemplateMessage? GetById(string templateId);
 
