@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VW.Notification.Application.Tests", "tests\VW.Notification.Application.Tests\VW.Notification.Application.Tests.csproj", "{9DECD3B5-ADB9-42AB-A3A2-22B667233937}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VW.Notification.Tests.Common", "tests\VW.Notifcation.Tests.Common\VW.Notification.Tests.Common.csproj", "{87B7935A-4A5F-4397-9B0A-EC95AD939A0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{9DECD3B5-ADB9-42AB-A3A2-22B667233937}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DECD3B5-ADB9-42AB-A3A2-22B667233937}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DECD3B5-ADB9-42AB-A3A2-22B667233937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B7935A-4A5F-4397-9B0A-EC95AD939A0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B7935A-4A5F-4397-9B0A-EC95AD939A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B7935A-4A5F-4397-9B0A-EC95AD939A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B7935A-4A5F-4397-9B0A-EC95AD939A0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{3C57EF66-7244-467A-9600-C6D78BF9666F} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{09E9EA9F-B5B0-4A24-96F4-90FB4CED07A1} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{9DECD3B5-ADB9-42AB-A3A2-22B667233937} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{87B7935A-4A5F-4397-9B0A-EC95AD939A0A} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8DBC32AC-4358-4C41-A615-6C554E9BDBC1}

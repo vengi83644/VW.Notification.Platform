@@ -12,7 +12,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Using Include="Xunit" />
+    <Using Include="VW.Notification.Domain.Entities" />
+    <Using Include="VW.Notification.Domain.Enums" />
+    <Using Include="VW.Notification.Tests.Common" />
+    <Using Include="VW.Notification.Application.Interfaces.Repositories" />
+    <Using Include="VW.Notification.Application.Interfaces.Services" />
+    <Using Include="VW.Notification.Application.DTOs" />
+    <Using Include="VW.Notification.Application.Services" />
+
+    <Using Include="Microsoft.Extensions.Logging" />
   </ItemGroup>
 
 </Project>

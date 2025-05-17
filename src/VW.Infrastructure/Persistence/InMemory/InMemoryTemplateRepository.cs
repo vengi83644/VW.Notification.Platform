@@ -10,10 +10,10 @@ public class InMemoryTemplateRepository : ITemplateRepository
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         ArgumentNullException.ThrowIfNull(configuration);
 
-        LoadFromDisk(configuration);
+        LoadFromConfig(configuration);
     }
 
-    private void LoadFromDisk(IConfiguration configuration)
+    private void LoadFromConfig(IConfiguration configuration)
     {
         var path = configuration.GetValue<string>("Templates");
 
