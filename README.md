@@ -7,20 +7,7 @@ This document outlines the architecture, design, and implementation details for 
 ## 2. Architecture Overview
 
 The platform follows a Clean Architecture approach, separating concerns into distinct layers. This promotes maintainability, testability, and scalability.
-
-
-
-+---------------------+      +-----------------------+      +---------------------+      +------------------------+
-|   Presentation      |<---->|      Application      |<---->|       Domain        |<---->|     Infrastructure     |
-| (ASP.NET Core API)  |      |   (Use Cases/Services)|      | (Entities/Business  |      |   (External Concerns)  |
-|                     |      |                       |      |        Logic)       |      | (DB, Email, SMS, Log)  |
-+---------------------+      +-----------------------+      +---------------------+      +------------------------+
-|                                                                                          |
-| (HTTP Requests/Responses)                                                                | (External Services, Data Stores)
-v                                                                                          v
-+--------------------------------------------------------------------------------------------------+
-|                                          External World                                          |
-+--------------------------------------------------------------------------------------------------+
+![image](https://github.com/user-attachments/assets/962ed6cd-fa30-48b1-ad7f-8713e213a9a0)
 
 
 ### 2.1. Layers
