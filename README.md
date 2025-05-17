@@ -106,7 +106,7 @@ The platform follows a Clean Architecture approach, separating concerns into dis
 2.  **Clone the Repository:**
     ```bash
     git clone <repository-url>
-    cd SmartNotificationPlatform
+    cd VW.Notification.Platform
     ```
 
 3.  **Build the Solution:**
@@ -120,12 +120,12 @@ The platform follows a Clean Architecture approach, separating concerns into dis
 
 5.  **Run the API:**
     ```bash
-    cd src/SmartNotificationPlatform.Api
-    dotnet run
+    cd src/VW.Notification.Api
+    dotnet run --launch-profile "https"
     ```
-    The API will typically start on `https://localhost:7xxx` or `http://localhost:5xxx`.
+    The API will typically start on `https://localhost:7xxx` and the Swagger link would be https://localhost:7268/swagger/index.html        
 
-6.  **Test Event Ingestion:**
+7.  **Test Event Ingestion:**
     * Use the Swagger UI to send a `POST` request to the `/api/events/send` endpoint.
     * Sample JSON payload can be found in `appsettings.json` under `notificationEventDTO`
     * Check the console output for simulated email/SMS messages.
