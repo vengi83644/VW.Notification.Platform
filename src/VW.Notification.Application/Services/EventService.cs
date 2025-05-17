@@ -111,7 +111,7 @@ public class EventService : IEventService
                     return;
                 }
 
-                var notificationTemplateData = new NotificationTemplateData(notificationEvent.Id, notificationEvent.EventType, customer);
+                var notificationTemplateData = new NotificationTemplateData(notificationEvent.Id, notificationEvent.EventType, customer, notificationEvent.Payload);
 
                 var notificationMessage = await _templateService.GetTemplateAsync(template?.TemplateId, notificationTemplateData);
 

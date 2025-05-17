@@ -8,7 +8,9 @@ public class NotificationTemplateData
 
     public Customer Recipient { get; set; }
 
-    public NotificationTemplateData(Guid eventId, string eventType, Customer recipient)
+    public Dictionary<string, string> Payload { get; set; }
+
+    public NotificationTemplateData(Guid eventId, string eventType, Customer recipient, Dictionary<string, string> payload)
     {
         if (eventId == Guid.Empty)
             throw new ArgumentException("Event ID cannot be empty.", nameof(eventId));
@@ -19,5 +21,6 @@ public class NotificationTemplateData
         EventId = eventId;
         EventType = eventType;
         Recipient = recipient;
+        Payload = payload;
     }
 }

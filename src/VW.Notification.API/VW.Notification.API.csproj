@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+  </ItemGroup>
+
+  <ItemGroup>    
+    <ProjectReference Include="..\VW.Notification.Application\VW.Notification.Application.csproj" />    
+    <ProjectReference Include="..\VW.Notification.Infrastructure\VW.Notification.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
