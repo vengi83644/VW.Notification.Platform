@@ -2,9 +2,9 @@
 
 public class NotificationStrategyFactory : INotificationStrategyFactory
 {
-    private readonly ILogger _logger;
+    private readonly ILogger<NotificationStrategyFactory> _logger;
 
-    public NotificationStrategyFactory(ILogger logger)
+    public NotificationStrategyFactory(ILogger<NotificationStrategyFactory> logger)
     {
         _logger = logger;
     }

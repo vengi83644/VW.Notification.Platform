@@ -19,12 +19,11 @@ public class SmsService : INotificationService
 
     public async Task<bool> SendNotificationAsync(NotificationRequest notificationRequest)
     {
-        notificationRequest.NotificationStatus = Domain.Enums.NotificationStatus.Retrying;
-        notificationRequest.RetryCount++;
-        notificationRequest.LastAttemptedTime = DateTime.UtcNow;
-
         return await _notificationRetryPolicy.ExecuteAsync(notificationRequest, async () =>
         {
+            notificationRequest.LastAttemptedTime = DateTime.UtcNow;
+            notificationRequest.Attempts++;
+
             //use an sms service provider to send the sms
 
             _logger.LogInformation("--- START SMS SEND ---");
@@ -32,6 +31,8 @@ public class SmsService : INotificationService
             _logger.LogInformation("Body: \n{Body}", notificationRequest.Message);
             _logger.LogInformation("--- SMS SENT ---");
 
+            await Task.FromResult(0);
+            return true;
         });
     }
 }

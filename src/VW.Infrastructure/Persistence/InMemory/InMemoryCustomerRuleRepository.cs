@@ -15,7 +15,7 @@ public class InMemoryCustomerRuleRepository : ICustomerRuleRepository<CustomerRu
 
     private void LoadFromConfig(IConfiguration configuration)
     {
-        var customerRulesConfig = configuration.GetSection("Customers").Get<List<CustomerRuleDTO>>();
+        var customerRulesConfig = configuration.GetSection("CustomerRules").Get<List<CustomerRuleDTO>>();
 
         if (customerRulesConfig != null)
         {

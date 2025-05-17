@@ -27,7 +27,7 @@ public class NotificationRetryPolicy
                 );
     }
 
-    public async Task<bool> ExecuteAsync(NotificationRequest notificationRequest, Func<Task> sendAction)
+    public async Task<bool> ExecuteAsync(NotificationRequest notificationRequest, Func<Task<bool>> sendAction)
     {
         try
         {
@@ -39,8 +39,6 @@ public class NotificationRetryPolicy
                 await sendAction();
 
                 notificationRequest.NotificationStatus = NotificationStatus.Sent;
-
-                notificationRequest.LastAttemptedTime = DateTime.UtcNow;
 
                 _logger.LogInformation("Notification sent successfully (Event: {EventId}) after attempts.", notificationRequest.EventId);
             });

@@ -7,11 +7,24 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddLogging(config =>
+{
+    config.AddConsole();
+    config.AddDebug();
+});
+
+builder.Services.AddRazorPages();
+builder.Services.Configure<RazorViewEngineOptions>(options =>
+{
+    options.ViewLocationFormats.Add("/Templates/{0}" + RazorViewEngine.ViewExtension);
+});
+
 // Add InMemory repositories as Singletons
 builder.Services.AddSingleton<IRuleRepository<Rule>, InMemoryRuleRepository>();
-builder.Services.AddSingleton<ITemplateRepository<TemplateMessage>, InMemoryTemplateRepository>();
 builder.Services.AddSingleton<ICustomerRepository<Customer>, InMemoryCustomerRepository>();
 builder.Services.AddSingleton<ICustomerRuleRepository<CustomerRule>, InMemoryCustomerRuleRepository>();
+
+builder.Services.AddSingleton<ITemplateRepository, InMemoryTemplateRepository>();
 
 builder.Services.AddSingleton<INotificationStrategyFactory, NotificationStrategyFactory>();
 

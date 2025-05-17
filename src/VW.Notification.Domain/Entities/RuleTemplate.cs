@@ -2,11 +2,11 @@
 
 public class RuleTemplate
 {
-    public Guid TemplateId { get; set; }
+    public string TemplateId { get; set; }
 
     public NotificationChannel NotificationChannel { get; set; }
 
-    public RuleTemplate(Guid templateId, NotificationChannel notificationChannel)
+    public RuleTemplate(string templateId, NotificationChannel notificationChannel)
     {
         TemplateId = templateId;
         NotificationChannel = notificationChannel;

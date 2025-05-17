@@ -1,11 +1,11 @@
 ﻿namespace VW.Notification.Infrastructure.Persistence.InMemory;
 
-public class InMemoryTemplateRepository : ITemplateRepository<TemplateMessage>
+public class InMemoryTemplateRepository : ITemplateRepository
 {
-    private readonly ILogger<ITemplateRepository<TemplateMessage>> _logger;
-    private readonly Dictionary<Guid, TemplateMessage> _templates = [];
+    private readonly ILogger<ITemplateRepository> _logger;
+    private readonly Dictionary<string, TemplateMessage> _templates = [];
 
-    public InMemoryTemplateRepository(ILogger<ITemplateRepository<TemplateMessage>> logger, IConfiguration configuration)
+    public InMemoryTemplateRepository(ILogger<ITemplateRepository> logger, IConfiguration configuration)
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         ArgumentNullException.ThrowIfNull(configuration);
@@ -19,7 +19,7 @@ public class InMemoryTemplateRepository : ITemplateRepository<TemplateMessage>
 
         var templateFoldersPath = Path.Combine(AppContext.BaseDirectory, path);
 
-        if (!Directory.Exists(templateFoldersPath))
+        if (Directory.Exists(templateFoldersPath))
         {
             var templateFiles = Directory.GetFiles(templateFoldersPath, "*.cshtml");
 
@@ -38,22 +38,22 @@ public class InMemoryTemplateRepository : ITemplateRepository<TemplateMessage>
 
     public void Add(TemplateMessage template)
     {
-        if (_templates.ContainsKey(template.Id))
+        if (_templates.ContainsKey(template.TemplateId))
         {
             _logger.LogWarning("Template with ID '{Id}' already exists for TemplateId {TemplateId}", template.Id, template.TemplateId);
             return;
         }
 
-        _templates.Add(template.Id, template);
+        _templates.Add(template.TemplateId, template);
     }
 
-    public TemplateMessage? GetById(Guid id)
+    public TemplateMessage? GetById(string templateId)
     {
-        _templates.TryGetValue(id, out var template);
+        _templates.TryGetValue(templateId, out var template);
 
         if (template == null)
         {
-            _logger.LogWarning("Template with ID '{Id}' not found.", id);
+            _logger.LogWarning("Template with ID '{Id}' not found.", templateId);
         }
 
         return template;
